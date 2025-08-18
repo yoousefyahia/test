@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error - 500 | Episis Restaurant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c1810, #4a2c1a, #6b4423, #8b5a2b);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* تأثير البخار المتصاعد */
+        .steam-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .steam {
+            position: absolute;
+            bottom: -50px;
+            width: 8px;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+            border-radius: 50% 50% 0 0;
+            animation: steamRise 4s ease-in-out infinite;
+        }
+        
+        .steam:nth-child(1) { left: 20%; animation-delay: 0s; }
+        .steam:nth-child(2) { left: 35%; animation-delay: 1s; }
+        .steam:nth-child(3) { left: 50%; animation-delay: 2s; }
+        .steam:nth-child(4) { left: 65%; animation-delay: 0.5s; }
+        .steam:nth-child(5) { left: 80%; animation-delay: 1.5s; }
+        
+        @keyframes steamRise {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.5);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-100px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) scale(0.8);
+            }
+        }
+        
+        /* تأثير الجمر المتطاير */
+        .embers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .ember {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, #ff6b35, #ff4500);
+            border-radius: 50%;
+            animation: emberFloat 6s linear infinite;
+        }
+        
+        .ember:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .ember:nth-child(2) { left: 25%; animation-delay: 1s; }
+        .ember:nth-child(3) { left: 40%; animation-delay: 2s; }
+        .ember:nth-child(4) { left: 55%; animation-delay: 3s; }
+        .ember:nth-child(5) { left: 70%; animation-delay: 1.5s; }
+        .ember:nth-child(6) { left: 85%; animation-delay: 2.5s; }
+        
+        @keyframes emberFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(100vh) translateX(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) translateX(100px) scale(0);
+            }
+        }
+        
+        /* المربع الرئيسي */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            box-shadow: 
+                0 25px 45px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: containerFloat 1s ease-out;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.1s ease-out;
+        }
+        
+        @keyframes containerFloat {
+            from {
+                opacity: 0;
+                transform: translateY(60px) rotateX(10deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+        
+        /* أيقونة الشيف المتعبة */
+        .chef-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+            animation: chefTired 4s ease-in-out infinite;
+        }
+        
+        .chef-icon {
+            font-size: 4.5rem;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .chef-icon::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: chefGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes chefTired {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-2deg); }
+            75% { transform: translateY(-3px) rotate(2deg); }
+        }
+        
+        @keyframes chefGlow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.1); }
+        }
+        
+        .error-number {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42, #ffa500, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 400% 400%;
+            animation: textShimmer 3s ease-in-out infinite, numberPulse 2s ease-in-out infinite alternate;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes numberPulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        
+        .restaurant-name {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
+            animation: nameGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes nameGlow {
+            from { 
+                text-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 0 0 30px rgba(255, 107, 53, 0.9);
+                transform: scale(1.02);
+            }
+        }
+        
+        h1 {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #ff8c42, #ff6b35);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.6);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .footer-text {
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        /* تأثير الإضاءة الخلفية */
+        .backlight {
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            width: 2px;
+            height: 200%;
+            background: linear-gradient(to bottom, 
+                transparent, 
+                rgba(255, 107, 53, 0.4), 
+                transparent);
+            transform: translateX(-50%) rotate(15deg);
+            animation: lightMove 5s ease-in-out infinite;
+        }
+        
+        @keyframes lightMove {
+            0%, 100% { opacity: 0; transform: translateX(-50%) rotate(15deg) scaleY(0); }
+            50% { opacity: 1; transform: translateX(-50%) rotate(15deg) scaleY(1); }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1.5rem;
+                margin: 0.5rem;
+                max-width: 400px;
+                width: 95%;
+                border-radius: 20px;
+            }
+            
+            .error-number {
+                font-size: 4rem;
+            }
+            
+            .restaurant-name {
+                font-size: 1.8rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+            
+            .chef-icon {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .container {
+                max-width: 350px;
+                padding: 1.5rem 1rem;
+                border-radius: 18px;
+            }
+            
+            .error-number {
+                font-size: 3.5rem;
+            }
+            
+            .restaurant-name {
+                font-size: 1.6rem;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .chef-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="steam-container">
+        <div class="steam"></div>
+        <div class="steam"></div>
+        <div class="steam"></div>
+        <div class="steam"></div>
+        <div class="steam"></div>
+    </div>
+    
+    <div class="embers">
+        <div class="ember"></div>
+        <div class="ember"></div>
+        <div class="ember"></div>
+        <div class="ember"></div>
+        <div class="ember"></div>
+        <div class="ember"></div>
+    </div>
+    
+    <div class="container">
+        <div class="backlight"></div>
+        
+        <div class="chef-container">
+            <div class="chef-icon">👨‍🍳</div>
+        </div>
+        
+        <div class="error-number">500</div>
+        
+        <div class="restaurant-name">Episis</div>
+        
+        <h1>عذراً! الشيف مشغول في المطبخ 🔥</h1>
+        
+        <p class="subtitle">
+            حدث خطأ في الخادم، الشيف يعمل على إصلاح المشكلة.<br>
+            يرجى المحاولة مرة أخرى بعد قليل، أو العودة للصفحة الرئيسية.
+        </p>
+        
+        <div class="buttons">
+            <a href="/" class="btn btn-primary">
+                🏠 العودة للرئيسية
+            </a>
+            <a href="javascript:location.reload()" class="btn btn-secondary">
+                🔄 إعادة المحاولة
+            </a>
+        </div>
+        
+        <p class="footer-text">
+            "الشيف يعمل بجد لإصلاح المشكلة" ⚡
+        </p>
+    </div>
+    
+    <script>
+        // تأثيرات تفاعلية متقدمة
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            const buttons = document.querySelectorAll('.btn');
+            
+            // تأثير حركة الماوس على الحاوية
+            document.addEventListener('mousemove', function(e) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 15;
+                const y = (e.clientY / window.innerHeight - 0.5) * 15;
+                
+                container.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
+            });
+            
+            // إعادة تعيين التحويل عند مغادرة الماوس
+            document.addEventListener('mouseleave', function() {
+                container.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+            });
+            
+            // تأثيرات الأزرار
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.animation = 'buttonPulse 0.6s ease-out';
+                });
+                
+                button.addEventListener('click', function(e) {
+                    // تأثير الموجة المتقدم
+                    const ripple = document.createElement('div');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255,255,255,0.4);
+                        transform: scale(0);
+                        animation: advancedRipple 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${e.clientX - rect.left - size/2}px;
+                        top: ${e.clientY - rect.top - size/2}px;
+                        pointer-events: none;
+                        z-index: 1000;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 800);
+                });
+            });
+            
+            // إنشاء جسيمات إضافية عند النقر
+            document.addEventListener('click', function(e) {
+                createClickParticles(e.clientX, e.clientY);
+            });
+            
+            // إنشاء بخار إضافي
+            function createExtraSteam() {
+                const steam = document.createElement('div');
+                steam.className = 'steam';
+                steam.style.left = Math.random() * 100 + '%';
+                steam.style.animationDuration = (3 + Math.random() * 2) + 's';
+                steam.style.animationDelay = Math.random() * 2 + 's';
+                
+                document.querySelector('.steam-container').appendChild(steam);
+                
+                setTimeout(() => steam.remove(), 5000);
+            }
+            
+            // إنشاء بخار كل 3 ثوان
+            setInterval(createExtraSteam, 3000);
+        });
+        
+        function createClickParticles(x, y) {
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: fixed;
+                    width: 6px;
+                    height: 6px;
+                    background: #ff6b35;
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                    left: ${x}px;
+                    top: ${y}px;
+                    animation: clickParticle 1s ease-out forwards;
+                `;
+                
+                const angle = (i / 8) * Math.PI * 2;
+                const velocity = 60 + Math.random() * 40;
+                particle.style.setProperty('--dx', Math.cos(angle) * velocity + 'px');
+                particle.style.setProperty('--dy', Math.sin(angle) * velocity + 'px');
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+        
+        // إضافة الأنيميشن للجسيمات المتفجرة
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes buttonPulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+            
+            @keyframes advancedRipple {
+                to {
+                    transform: scale(2.5);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes clickParticle {
+                0% {
+                    opacity: 1;
+                    transform: translate(0, 0) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translate(var(--dx), var(--dy)) scale(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

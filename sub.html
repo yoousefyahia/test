@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انتهاء اشتراكك</title>
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #ffffff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+
+        
+        .container {
+            background: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid #f0f0f0;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+
+        
+        .food-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+            animation: chefBounce 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes chefBounce {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            25% {
+                transform: translateY(-8px) scale(1.05);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.1);
+            }
+            75% {
+                transform: translateY(-5px) scale(1.03);
+            }
+        }
+        
+
+        
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            color: #5a6c7d;
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        
+
+        
+
+        
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 0;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            min-width: 280px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
+            background: linear-gradient(135deg, #ff8c42, #ff6b35);
+        }
+        
+
+        
+        .contact-info {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-title {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            color: #5a6c7d;
+            font-size: 14px;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            color: #ff6b35;
+        }
+        
+        .contact-icon {
+            margin-left: 10px;
+            color: #ff6b35;
+        }
+        
+
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+                max-height: 95vh;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .food-icon {
+                font-size: 48px;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 16px;
+                min-width: 240px;
+            }
+
+            .contact-info {
+                padding: 15px;
+            }
+
+            .contact-item {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="container">
+        <div class="food-icon">👨‍🍳</div>
+        <div class="status-badge">تنبيه هام</div>
+        <h1>لقد انتهت مدة اشتراكك</h1>
+        <p class="subtitle">اضغط للتجديد والاستمتاع بخدماتنا المميزة</p>
+        
+
+        
+
+        
+        <div class="buttons">
+            <button type="button" class="btn btn-primary" onclick="renewSubscription()">
+                اضغط للتجديد الآن ⚡
+            </button>
+        </div>
+        
+        <div class="contact-info">
+            <div class="contact-title">تحتاج مساعدة؟</div>
+            <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <span>اتصل بنا: 01234567890</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">💬</span>
+                <span>واتساب: 01234567890</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">⏰</span>
+                <span>خدمة العملاء: 24/7</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
